@@ -1,0 +1,11 @@
+s*.elf
+*.eep
+*.hex
+*.lss
+*.map
+*.sym
+*.o
+*.d
+*.lst
+traces
+.ipynb_checkpoints
