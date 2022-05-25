@@ -28,7 +28,7 @@ def two_bit_model(pts, byte, b):
     return model
 
 
-def get_traces(path):
+def get_traces(path, n_traces=None):
     """Reads and processes traces from a file."""
     # Get the keys from the filename
     key = bytearray(
@@ -37,11 +37,15 @@ def get_traces(path):
     plaintexts = []
     ciphertexts = []
     values = []
+    i = 0
     with open(path) as file:
         for row in csv.reader(file, delimiter=";"):
             plaintexts.append(bytearray(unhexlify(row[0])))
             ciphertexts.append(bytearray(unhexlify(row[1])))
             values.append(np.fromstring(row[2], sep=","))
+            i += 1
+            if n_traces is not None and i >= n_traces:
+                break
     # Create a vector of plaintexts
     plaintexts = np.asarray(plaintexts, dtype=np.uint8)
     ciphertexts = np.asarray(ciphertexts, dtype=np.uint8)

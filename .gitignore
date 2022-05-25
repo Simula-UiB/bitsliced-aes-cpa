@@ -9,3 +9,4 @@ s*.elf
 *.lst
 traces
 .ipynb_checkpoints
+__pycache__

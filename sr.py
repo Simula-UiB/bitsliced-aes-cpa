@@ -1,5 +1,4 @@
 from util import *
-import os
 import collections
 import csv
 
@@ -42,8 +41,8 @@ def main():
                 get_results(path), lambda keyranks: keyranks.count(0) / len(keyranks)
             )
             for path in [
-                "results/experiments-1650900926.csv",
-                "results/experiments-1650903964.csv",
+                "results/experiments-1653490681.csv",
+                "results/experiments-1653495764.csv",
             ]
         ],
         ["Same", "Different"],
@@ -54,7 +53,16 @@ def main():
         writer.writeheader()
         for k, v in data.items():
             v["Traces"] = k
-        writer.writerow(v)
+            writer.writerow(v)
+
+    target = {}
+    for traces, method_dict in data.items():
+        for method, sr in method_dict.items():
+            if sr >= 0.99 and method not in target:
+                target[method] = traces
+    for i in ["Same", "Different"]:
+        for j in ["Sum", "Prod", "Max", "Bit 0"]:
+            print(f"{i} {j}: {target[i + ' ' + j]}")
 
 
 if __name__ == "__main__":

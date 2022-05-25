@@ -22,7 +22,7 @@ def snr_plot(traces, model):
 
 def main():
     key, plaintexts, _, traces = get_traces(
-        "traces/2b7e151628aed2a6abf7158809cf4f3c-fix-500000-diff.csv"
+        "traces/2b7e151628aed2a6abf7158809cf4f3c-fix-500000-diff.csv", 5000
     )
 
     snrs = []
